@@ -23,8 +23,7 @@ CREATE DATABASE IF NOT EXISTS `challengeSQL` DEFAULT CHARACTER SET utf8 COLLATE 
 USE `challengeSQL`;
 
 CREATE USER 'challenge'@'localhost' IDENTIFIED BY 'challenge';
-GRANT ALL PRIVILEGES ON challengeSQL.articles TO 'challenge'@'localhost';
-GRANT ALL PRIVILEGES ON challengeSQL.the_table_users TO 'challenge'@'localhost';
+GRANT ALL PRIVILEGES ON challengeSQL.users TO 'challenge'@'localhost';
 
 -- --------------------------------------------------------
 
@@ -32,25 +31,17 @@ GRANT ALL PRIVILEGES ON challengeSQL.the_table_users TO 'challenge'@'localhost';
 -- Table structure for table `users`
 --
 
-CREATE TABLE `articles` (
-  `id` varchar(10) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `content` varchar(50) NOT NULL
+CREATE TABLE `users` (
+  `login` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `articles`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `articles` (`id`,`title`,`content`) VALUES ('1','Article 01','Ceci est le contenu de l article !'),('2','Article 02','Ceci est le second article !'),('3','Article 03','Ceci est le 3eme article !');
-
-CREATE TABLE `the_table_users`(
-	`login` varchar(50) NOT NULL,
-	`password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-INSERT INTO `the_table_users` (`login`, `password`) VALUES ('admin', 'This1sY0urAws0m3Fl4g!');
+INSERT INTO `users` (`login`, `password`) VALUES
+('admin', 'bl1nD5QLInj3ct1onf0rDummYz');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
