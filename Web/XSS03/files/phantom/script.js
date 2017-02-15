@@ -7,7 +7,7 @@ var timeout = 2000;
 
 phantom.addCookie({
     'name': 'adminCookie',
-    'value': 'ZWh0aWNhbEhhY2tpbmdYU1NDaGFsbGVuZ2U=',
+    'value': 'WHNzQ2hhbGxlbmdlU2VjdXJlT3JOb3QK',
     'domain': host,
     'path': '/',
     'httponly': false

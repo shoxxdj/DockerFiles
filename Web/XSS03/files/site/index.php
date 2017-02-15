@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>XSS v0.01</title>
+	<title>XSS v0.02</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
@@ -37,14 +37,24 @@
 
 
 <?php
+	function xssSanitizer($input){
+		$input = strtolower($input);
+		$input = str_replace("script","",$input);
+		$input = str_replace("img","",$input);
+		$input = str_replace("src","", $input);
+		return $input;
+	}
+
+
+
 	if(isset($_POST['message'])){
 		    $pdo = new PDO('sqlite:'.dirname(__FILE__).'/challengeUtils/database.sqlite');
-		    $req = $pdo->prepare("INSERT INTO messages (message,view) VALUES (:message,0)");
-		    $message = $_POST['message'];
+		    $req = $pdo->prepare("INSERT INTO messages (message,view) VALUES (:message,0)");			
+		    $message = xssSanitizer($_POST['message']);
 		    $pouet = $req->execute(array('message'=>$message));
 		    ?>
 		    	<div class="alert alert-success" role="alert">
-				  Message envoyé ! Un admin consultera ce dernier d'ici <b>a peu près une minute</b>
+				  Message envoyé ! Un admin consultera ce dernier d'ici <b>Une minute maximum</b>
 				</div>
 		    <?php
 	}
